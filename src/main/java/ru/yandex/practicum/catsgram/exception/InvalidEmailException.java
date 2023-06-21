@@ -1,7 +1,7 @@
 package ru.yandex.practicum.catsgram.exception;
 
-public class InvalidEmailException extends RuntimeException {
-    public InvalidEmailException(String s) {
+public class InvalidEmailException extends Throwable {
+    public InvalidEmailException(String s)  {
         super(s);
     }
 }

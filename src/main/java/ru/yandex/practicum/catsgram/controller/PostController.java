@@ -1,31 +1,36 @@
 package ru.yandex.practicum.catsgram.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import ru.yandex.practicum.catsgram.exception.UserNotFoundException;
 import ru.yandex.practicum.catsgram.model.Post;
 import ru.yandex.practicum.catsgram.service.PostService;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RestController
 public class PostController {
     private final PostService postService;
 
     @Autowired
-    public PostController(PostService postService) {
+    public PostController(PostService postService){
         this.postService = postService;
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/posts/{postId}")
     public List<Post> findAll() {
         return postService.findAll();
     }
 
     @PostMapping(value = "/post")
-    public Post create(@RequestBody Post post) {
+    public Post create(@RequestBody Post post) throws UserNotFoundException {
         return postService.create(post);
     }
+
 }
