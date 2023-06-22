@@ -33,5 +33,10 @@ public class UserController {
     public User update(@RequestBody User user) throws InvalidEmailException {
         return userService.update(user);
     }
+
+    @GetMapping("/users/{userEmail}")
+    public User findUserByEmail(@PathVariable("userEmail") String email) {
+        return userService.findUserByEmail(email);
+    }
 }
 
