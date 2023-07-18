@@ -3,21 +3,29 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 public class Post {
     private Integer id;
-    private final String author;
-    private final Instant creationDate = Instant.now();
+    private final User author;
+    private final LocalDate creationDate;
     private String description;
     private String photoUrl;
 
-    public Post(Integer id, String author, String description, String photoUrl) {
+    public Post(User author, String description, String photoUrl) {
+        this.author = author;
+        this.description = description;
+        this.photoUrl = photoUrl;
+        this.creationDate = LocalDate.now();
+    }
+
+    public Post(Integer id, User author, String description, String photoUrl, LocalDate creationDate) {
         this.id = id;
         this.author = author;
         this.description = description;
         this.photoUrl = photoUrl;
+        this.creationDate = creationDate;
     }
-
 }
